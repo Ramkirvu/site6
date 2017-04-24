@@ -1,0 +1,135 @@
+/* Reset
+-------------------------------------------------- */
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+address,
+code,
+em,
+img,
+q,
+small,
+strong,
+sub,
+sup,
+dd,
+dl,
+dt,
+li,
+ol,
+ul,
+fieldset,
+form,
+label,
+legend,
+button,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+textarea,
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+nav,
+section{
+  margin: 0;
+  padding: 0;
+  }
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+nav,
+section {
+  display: block;
+  }
+table{
+  width: 100%;
+  border-spacing: 0;
+  border-collapse: collapse;
+  empty-cells: show;
+  font-size: 100%;
+  }
+fieldset,
+img,
+abbr{
+  border: 0;
+  }
+img{
+  vertical-align: top;
+  -ms-interpolation-mode: bicubic;
+  }
+ul,
+ol{
+  list-style: none;
+  }
+input,
+button,
+textarea,
+select,
+optgroup,
+option{
+  font-weight: inherit;
+  font-style: inherit;
+  font-size: inherit;
+  font-family: inherit;
+  }
+:focus{
+  outline: 0;
+  }
+button.btn{
+  -webkit-border-fit: lines;
+  }
+button.btn::-moz-focus-inner{
+  padding: 0;
+  border: 0;
+  }
+form{
+  display: inline;
+  }
+strong{
+  font-weight: 700;
+  }
+q,
+blockquote{
+  quotes: none;
+  }
+q:before,
+q:after{
+  content: '';
+  }
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}  
+button::-moz-focus-inner,
+input::-moz-focus-inner{
+  border: 0;
+  padding: 0;
+}  
