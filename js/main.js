@@ -6,24 +6,80 @@ jQuery.noConflict();
 
 jQuery(document).ready(function($) {
 
-    var input = $('#container-input');
+    //RELOAD PAGE
+    $('#reload').click(function () {
+       location.reload();
+    });
 
-    input.on('click', function (e) {
-       $(this).animate({'bottom':'-=100px'}, 150);
+
+
+    $('#slide-on').on('click', function (event) {
+        $( "#slide" )
+            .animate({
+            width: "toggle",
+            height: "toggle"
+        }, {
+            duration: 500,
+            specialEasing: {
+                width: "linear"
+            }
+        });
     });
-    input.on('click', function (e) {
-        $(this).animate({'top':'+=100px'}, 150);
+
+    $('#box2').on('click', function () {
+        var w = $('#width');
+        w.animate({
+            width : '15rem',
+            height : '15rem'
+        }, 500);
+        w.animate({
+            width : '3rem',
+            height : '3rem'
+        }, 500)
     });
-    input.on('click', function (e) {
-        $(this).animate({'right':'+=100px'}, 150);
+
+    $('#box4').on('click', function () {
+        $('#box4').animate({
+            width: '4rem'
+        });
     });
-    input.on('click', function (e) {
-        $(this).animate({'right':'-=100px'}, 150);
+
+    $('#box4').on('click', function () {
+        $('#box4').hide(700, function () {
+               $("#box2").html("hide")
+        }).animate({
+            width: '3rem'
+        });
     });
-    input.on('click', function (e) {
-        $(this).animate({'left':'+=100px'}, 150);
+
+
+    $('#hideShow').on('click', function () {
+        $("#box5").animate({height: "hide"}, 1000);
+        $("#box5").animate({height: "show"}, 1000);
     });
-    input.on('click', function (e) {
-        $(this).animate({'left':'-=100px'}, 150);
+
+
+    //DOWN ON CLICK
+    $("#div-count").on('click', function () {
+        $("#down-on").offset(function(i, val){
+            return {top:val.top + 15, left:val.left};
+        });
     });
+
+    //TEXT IN BOX
+    $("#div-count").click(function() {
+       $(".count").html(+$(".count").html()+1);
+    });
+
+    $("#div-count").click(function(e) {
+        var offset = $("#down-on").offset();
+        var relativeX = (e.pageX - offset.left);
+        var relativeY = (e.pageY - offset.top);
+
+        $(".count-cor").html(" X: " + relativeX + "  Y: " + relativeY);
+    });
+
 });
+
+
+
