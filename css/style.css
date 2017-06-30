@@ -101,3 +101,12 @@ span {
 .dk-grey {
     background-color: #a9a9a9;
 }
+.yellow {
+   background-color: yellow;
+}
+.cursor {
+    cursor: pointer;
+}
+.hide {
+    display: none;
+}

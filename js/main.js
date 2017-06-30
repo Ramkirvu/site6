@@ -45,9 +45,7 @@ jQuery(document).ready(function($) {
     });
 
     $('#box4').on('click', function () {
-        $('#box4').hide(700, function () {
-               $("#box2").html("hide")
-        }).animate({
+        $('#box4').hide(700).animate({
             width: '3rem'
         });
     });
@@ -71,6 +69,7 @@ jQuery(document).ready(function($) {
        $(".count").html(+$(".count").html()+1);
     });
 
+    //POSITION OF BOX
     $("#div-count").click(function(e) {
         var offset = $("#down-on").offset();
         var relativeX = (e.pageX - offset.left);
@@ -79,7 +78,89 @@ jQuery(document).ready(function($) {
         $(".count-cor").html(" X: " + relativeX + "  Y: " + relativeY);
     });
 
+    //HIDE SHOW TEXT ON FOOTER
+    $(".toggle").click( function () {
+         $("#hide").slideDown('fast');
+    });
+
 });
+
+
+
+
+//DRAG N DROP ON JS
+
+var getCoords = function getCoords(elem) { // кроме IE8-
+    var box = elem.getBoundingClientRect();
+
+    return {
+        top: box.top + pageYOffset,
+        left: box.left + pageXOffset,
+    };
+
+};
+
+var move = document.getElementById("draggable");
+
+move.onmousedown = function (e) {
+
+    var coords = getCoords(move);
+    var shiftX = e.pageX - coords.left;
+    var shiftY = e.pageY - coords.top;
+
+    move.style.position = 'absolute';
+    moveAt(e);
+    document.body.appendChild(move);
+    // move.style.zIndex = 1000;
+
+    function moveAt(e) {
+        move.style.left = e.pageX - shiftX + 'px';
+        move.style.top = e.pageY - shiftY + 'px';
+    }
+
+    document.onmousemove = function(e) {
+        moveAt(e);
+    };
+
+    move.onmouseup = function() {
+        document.onmousemove = null;
+        move.onmouseup = null;
+    };
+};
+
+//отклюаем drag n drop html
+move.ondragstart = function() {
+    return false;
+};
+
+
+
+// ПОЛУЧАЕМ КООРДИНАТЫ КЛАССА BOX(МАССИВ) И ВЫВОДИМ В КОНСОЛЬ
+
+var arrCords = document.querySelectorAll('.box');
+
+for (var i = 0; i < arrCords.length; i++) {
+    console.log(arrCords[i].getBoundingClientRect());
+}
+
+
+console.log(move.getBoundingClientRect());
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
