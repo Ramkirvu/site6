@@ -95,7 +95,7 @@ var getCoords = function getCoords(elem) { // кроме IE8-
 
     return {
         top: box.top + pageYOffset,
-        left: box.left + pageXOffset,
+        left: box.left + pageXOffset
     };
 
 };
@@ -144,7 +144,39 @@ for (var i = 0; i < arrCords.length; i++) {
 }
 
 
-console.log(move.getBoundingClientRect());
+// ПОЛУЧАЕМ КООРДИНАТЫ ДИНАМИЧЕСКОЙ  КОРОБОЧКИ
+
+var dynBox = document.querySelector('.cursor');
+
+
+//СРАВНЕНИЕ
+
+var a = arrCords[3].getBoundingClientRect();
+arrCords[3].innerHTML = a.right;
+
+
+// НАЗНАЧАЕМ ОБРАБОТЧИК СОБЫТИЙ
+
+dynBox.addEventListener("mousemove", handler);
+
+function handler() {
+
+    console.log(a.right, dynBox.getBoundingClientRect().left);
+    dynBox.innerHTML = (a.right >= dynBox.getBoundingClientRect().left)
+    || dynBox.getBoundingClientRect().right;
+
+    //СЛУШАЕМ НАПОЛЗАНИЕ
+     if (a.right >= dynBox.getBoundingClientRect().left) {
+         console.log(true)
+
+     }
+
+     else {
+         console.log(false)
+     }
+
+}
+
 
 
 
