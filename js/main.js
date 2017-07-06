@@ -111,7 +111,6 @@ move.onmousedown = function (e) {
     move.style.position = 'absolute';
     moveAt(e);
     document.body.appendChild(move);
-    // move.style.zIndex = 1000;
 
     function moveAt(e) {
         move.style.left = e.pageX - shiftX + 'px';
@@ -133,8 +132,6 @@ move.ondragstart = function() {
     return false;
 };
 
-
-
 // ПОЛУЧАЕМ КООРДИНАТЫ КЛАССА BOX(МАССИВ) И ВЫВОДИМ В КОНСОЛЬ
 
 var arrCords = document.querySelectorAll('.box');
@@ -143,16 +140,35 @@ for (var i = 0; i < arrCords.length; i++) {
     console.log(arrCords[i].getBoundingClientRect());
 }
 
+//ПОЛУЧАЕМ 4 ПАРЫ КООРДИНАТ
 
-// ПОЛУЧАЕМ КООРДИНАТЫ ДИНАМИЧЕСКОЙ  КОРОБОЧКИ
+var cord = arrCords[3].getBoundingClientRect(); //пример на четвертом сером квадрате
+
+function getCoordBox() {
+    return [
+        [cord.left, cord.top],
+        [cord.right, cord.top],
+        [cord.left, cord.bottom],
+        [cord.right, cord.bottom]
+    ]
+}
+
+// ПОЛУЧАЕМ 4 ПАРЫ КООРДИНАТ ДИНАМИЧЕСКОЙ  КОРОБОЧКИ
 
 var dynBox = document.querySelector('.cursor');
 
+function getCoordArray() {
+    return [
+        [dynBox.getBoundingClientRect().left, dynBox.getBoundingClientRect().top],
+        [dynBox.getBoundingClientRect().right, dynBox.getBoundingClientRect().top],
+        [dynBox.getBoundingClientRect().left, dynBox.getBoundingClientRect().bottom],
+        [dynBox.getBoundingClientRect().right, dynBox.getBoundingClientRect().bottom]
+    ]
+}
 
 //СРАВНЕНИЕ
 
-var a = arrCords[3].getBoundingClientRect();
-arrCords[3].innerHTML = a.right;
+
 
 
 // НАЗНАЧАЕМ ОБРАБОТЧИК СОБЫТИЙ
@@ -161,21 +177,31 @@ dynBox.addEventListener("mousemove", handler);
 
 function handler() {
 
-    console.log(a.right, dynBox.getBoundingClientRect().left);
-    dynBox.innerHTML = (a.right >= dynBox.getBoundingClientRect().left)
-    || dynBox.getBoundingClientRect().right;
+    //массив координат статический
+    var b =  document.querySelector('.b');
+    b.innerHTML = JSON.stringify(getCoordBox());
 
-    //СЛУШАЕМ НАПОЛЗАНИЕ
-     if (a.right >= dynBox.getBoundingClientRect().left) {
-         console.log(true)
+    //массив координат динамический
+    var db =  document.querySelector('.db');
+    db.innerHTML = JSON.stringify(getCoordArray());
 
-     }
 
-     else {
-         console.log(false)
-     }
+    var a = arrCords[3].getBoundingClientRect();
+
+    // dynBox.innerHTML = ((a.right) >= dynBox.getBoundingClientRect().left)
+    //     || dynBox.getBoundingClientRect().right;
+
+    dynBox.innerHTML = (JSON.stringify(getCoordBox()) >= JSON.stringify(getCoordArray()))
+        // || dynBox.getBoundingClientRect().right;
 
 }
+
+
+
+
+//СДВИГАЕМ БЛОК НА РАЗНИЦУ
+
+
 
 
 
